@@ -1,4 +1,4 @@
-# this is an flutter chat app 
+# this is a flutter chat app 
 
 ![image of homescreen](https://i.imgur.com/WxVrT5D.jpg)
 
