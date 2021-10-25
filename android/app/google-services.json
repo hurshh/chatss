@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "673536068543",
+    "project_id": "chatss-b2acc",
+    "storage_bucket": "chatss-b2acc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673536068543:android:448daeb69e8115d5666f0a",
+        "android_client_info": {
+          "package_name": "com.example.chatss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673536068543-82qs8cttpu3c2hekki7qbv9018qco528.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlJsK1CJAYZuBXZSts0Ci7vUaOtbBog7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673536068543-82qs8cttpu3c2hekki7qbv9018qco528.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

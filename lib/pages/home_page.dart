@@ -1,7 +1,10 @@
+import 'package:chatss/functions/firebase_initialliztion.dart';
 import 'package:chatss/pages/login_page.dart';
 import 'package:chatss/pages/register_page.dart';
 import 'package:chatss/widgets/ButtonCust.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:email_auth/email_auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,6 +15,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    initializeFirebase();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
