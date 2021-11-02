@@ -20,9 +20,11 @@ class _ChatScreenState extends State<ChatScreen> {
   String message = "";
   User? loggedInUser = auth.currentUser;
 
+
   @override
   void initState() {
     super.initState();
+    loggedInUser = auth.currentUser;
   }
 
   @override
@@ -31,6 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
+            auth.signOut();
             Navigator.pop(context);
           },
           icon: Icon(

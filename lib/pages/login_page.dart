@@ -7,8 +7,9 @@ import 'package:email_auth/email_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'chat_page.dart';
+
+String LoginErrorMessage ="";
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,19 +25,39 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> loginFirebase() async {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
-          email: loginEmail,
+          email: loginEmail.trim(),
           password: loginPassword
       );
     } on FirebaseAuthException catch (e) {
+      print(e);
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
+        setState(() {
+          LoginErrorMessage = "Invalid user ID";
+        });
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
+        setState(() {
+          LoginErrorMessage = "Incorrect password";
+        });
+      }
+      else if (e.code == 'invalid-email'){
+        setState(() {
+          LoginErrorMessage = "Fill correct email ID";
+        });
+      }
+      else if(loginPassword.length == 0){
+        setState(() {
+          LoginErrorMessage = "Fill password";
+        });
       }
     }
     auth.authStateChanges()
         .listen((User? user) {
       if (user != null) {
+        setState(() {
+          LoginErrorMessage = "";
+        });
         Navigator.pushNamed(context, ChatScreen.id);
       }
     });
@@ -44,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    String LoginErrorMessage ="";
   }
   @override
   Widget build(BuildContext context) {
@@ -57,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
           Flexible(child: Hero(child: Image(image: AssetImage('assests/kitty.png'),height: 300,width: 300,),tag: 'kitty',)),
           TextFieldCust(label: "E-mail",textChange: (string){loginEmail = string;print(loginEmail);},),
           TextFieldCust(label: "password",textChange: (string){loginPassword = string;print(loginPassword);},),
+          Text(LoginErrorMessage,style: TextStyle(color: Colors.redAccent),),
           ButtonC(label: 'login',function: (){
             //function when login button is triggered
             loginFirebase();
